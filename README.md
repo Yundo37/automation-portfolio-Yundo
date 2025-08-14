@@ -9,7 +9,7 @@ Page Object Model 패턴 적용으로 유지보수성과 재사용성 확보
 ## 빠른 실행 방법
 
 ### Google Colab에서 실행
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/Test%20Automation-Yundo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/Test_Automation_Yundo.ipynb)
 
 ### 로컬 환경에서 실행
 ```bash
