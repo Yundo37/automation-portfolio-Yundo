@@ -1,0 +1,10 @@
+# Python 캐시
+__pycache__/
+*.pyc
+
+# 로그 파일
+logfile.log
+
+# 실행 결과물
+reports/*.html
+reports/*.png
