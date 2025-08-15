@@ -37,13 +37,9 @@ def setup(request):
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--window-size=1920,1080")
         
-        try:
-            from webdriver_manager.chrome import ChromeDriverManager
-            service_obj = ChromeService(ChromeDriverManager().install())
-            print("ChromeDriver 자동 다운로드 완료")
-        except:
-            service_obj = ChromeService("C:/Users/YB/Documents/chromedriver/chromedriver.exe")
-            print("로컬 ChromeDriver 사용")
+        chrome_options.binary_location = "/usr/bin/chromium-browser"  # 추가
+        service_obj = ChromeService("/usr/bin/chromedriver")  # 경로 직접 지정
+        print("Colab ChromeDriver 설정 완료")
         
         driver = webdriver.Chrome(service=service_obj, options=chrome_options)
     elif browser_name == "edge":
