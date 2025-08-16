@@ -31,6 +31,10 @@ def setup(request):
     yield
     driver.close()
 
+# (기존 내용 유지) 상단 import / 전역 driver 그대로 사용
+
+# ... 중략 ...
+
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
     pytest_html = item.config.pluginmanager.getplugin('html')
@@ -40,7 +44,8 @@ def pytest_runtest_makereport(item):
 
     if report.when in ('call','setup'):
         xfail = hasattr(report, 'wasxfail')
-        if (report.skipped and xfail) or (report.failed and not xfail):
+        # ↓ driver가 없으면 스크린샷 로직 건너뜀
+        if ((report.skipped and xfail) or (report.failed and not xfail)) and (driver is not None):
             file_name = report.nodeid.replace("::", "_") + ".png"
             file_path = os.path.join("reports", file_name)
             _capture_screenshot(file_path)
@@ -55,5 +60,8 @@ def pytest_runtest_makereport(item):
     report.extra = extra
 
 def _capture_screenshot(path):
+    # ↓ driver가 없으면 바로 리턴
+    if driver is None:
+        return
     os.makedirs(os.path.dirname(path), exist_ok=True)
     driver.get_screenshot_as_file(path)
