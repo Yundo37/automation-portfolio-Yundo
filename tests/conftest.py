@@ -16,6 +16,7 @@ def setup(request):
     if browser_name == "chrome":
         service_obj = ChromeService(ChromeDriverManager().install())
         options = ChromeOptions()
+        options.binary_location = "/usr/bin/chromium-browser"   # ← 이 줄만 추가
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
@@ -65,3 +66,5 @@ def _capture_screenshot(path):
         return
     os.makedirs(os.path.dirname(path), exist_ok=True)
     driver.get_screenshot_as_file(path)
+
+
