@@ -16,11 +16,13 @@ def setup(request):
     if browser_name == "chrome":
         service_obj = ChromeService(ChromeDriverManager().install())
         options = ChromeOptions()
-        options.binary_location = "/usr/bin/google-chrome"
-        options.add_argument("--remote-debugging-port=9222")
+        **options.binary_location = "/usr/bin/google-chrome"**  # ← 경로 고정
+        **options.add_argument("--remote-debugging-port=9222")** # ← 추가
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+        **options.add_argument("--disable-gpu")**                # ← 추가
+        **options.add_argument("--disable-software-rasterizer")**# ← 추가
         driver = webdriver.Chrome(service=service_obj, options=options)
     else:
         raise RuntimeError("Only chrome supported in Colab")
@@ -32,6 +34,7 @@ def setup(request):
     request.cls.driver = driver
     yield
     driver.close()
+
 
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
