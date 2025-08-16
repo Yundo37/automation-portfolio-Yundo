@@ -4,6 +4,8 @@ from shutil import which
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from webdriver_manager.chrome import ChromeDriverManager  # 
+
 
 driver = None
 
@@ -20,8 +22,8 @@ def setup(request):
             raise RuntimeError("chromedriver not found")
         service_obj = ChromeService(chromedriver_path)
         options = ChromeOptions()
-        options.binary_location = "/usr/bin/chromium-browser"
-        options.add_argument("--remote-debugging-port=0")
+        options.binary_location = "/usr/bin/google-chrome"   
+    o    ptions.add_argument("--remote-debugging-port=9222") 
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
