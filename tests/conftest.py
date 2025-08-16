@@ -1,11 +1,8 @@
-# --- 상단 import ---
 import os, base64, pytest
-from shutil import which
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from webdriver_manager.chrome import ChromeDriverManager  # 
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 driver = None
 
@@ -17,13 +14,10 @@ def setup(request):
     global driver
     browser_name = request.config.getoption("browser_name")
     if browser_name == "chrome":
-        chromedriver_path = which("chromedriver")
-        if not chromedriver_path:
-            raise RuntimeError("chromedriver not found")
-        service_obj = ChromeService(chromedriver_path)
+        service_obj = ChromeService(ChromeDriverManager().install())
         options = ChromeOptions()
-        options.binary_location = "/usr/bin/google-chrome"   
-    o    ptions.add_argument("--remote-debugging-port=9222") 
+        options.binary_location = "/usr/bin/google-chrome"
+        options.add_argument("--remote-debugging-port=9222")
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
@@ -39,7 +33,6 @@ def setup(request):
     yield
     driver.close()
 
-# 아래 훅/함수는 그대로 유지
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
     pytest_html = item.config.pluginmanager.getplugin('html')
