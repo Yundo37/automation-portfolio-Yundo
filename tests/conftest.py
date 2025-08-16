@@ -1,3 +1,4 @@
+# --- 상단 import ---
 import os, base64, pytest
 from shutil import which
 from selenium import webdriver
@@ -14,8 +15,13 @@ def setup(request):
     global driver
     browser_name = request.config.getoption("browser_name")
     if browser_name == "chrome":
-        service_obj = ChromeService(ChromeDriverManager().install())
+        chromedriver_path = which("chromedriver")
+        if not chromedriver_path:
+            raise RuntimeError("chromedriver not found")
+        service_obj = ChromeService(chromedriver_path)
         options = ChromeOptions()
+        options.binary_location = "/usr/bin/chromium-browser"
+        options.add_argument("--remote-debugging-port=0")
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
@@ -31,20 +37,15 @@ def setup(request):
     yield
     driver.close()
 
-# (기존 내용 유지) 상단 import / 전역 driver 그대로 사용
-
-# ... 중략 ...
-
+# 아래 훅/함수는 그대로 유지
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
     pytest_html = item.config.pluginmanager.getplugin('html')
     outcome = yield
     report = outcome.get_result()
     extra = getattr(report, 'extra', [])
-
     if report.when in ('call','setup'):
         xfail = hasattr(report, 'wasxfail')
-        # ↓ driver가 없으면 스크린샷 로직 건너뜀
         if ((report.skipped and xfail) or (report.failed and not xfail)) and (driver is not None):
             file_name = report.nodeid.replace("::", "_") + ".png"
             file_path = os.path.join("reports", file_name)
@@ -60,10 +61,7 @@ def pytest_runtest_makereport(item):
     report.extra = extra
 
 def _capture_screenshot(path):
-    # ↓ driver가 없으면 바로 리턴
     if driver is None:
         return
     os.makedirs(os.path.dirname(path), exist_ok=True)
     driver.get_screenshot_as_file(path)
-
-
