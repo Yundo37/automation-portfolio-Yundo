@@ -8,7 +8,7 @@ class CheckOutPage:
 
     productTitle = (By.XPATH, "//div[@class='card h-100']")
     productFooter = (By.XPATH, "div/button")
-    checkOut = (By.XPATH, "//button[@class='btn btn-success']")
+    checkOut = (By.CSS_SELECTOR, "a[class*='btn-primary']")
 
     def getProductTitles(self):
         return self.driver.find_elements(*CheckOutPage.productTitle)
