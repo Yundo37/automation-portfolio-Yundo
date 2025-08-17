@@ -7,7 +7,8 @@
 ### Google Colab에서 실행
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/automation_portfolio.ipynb)
 
-**⚠️ 처음 실행 시 "Google에서 작성하지 않음" 경고가 뜰 수 있습니다. '무시하고 계속하기'를 클릭하면 실행에 문제가 없습니다.**
+**⚠️ 처음 실행 시 "Google에서 작성하지 않음" 경고가 뜰 수 있습니다. 
+'무시하고 계속하기'를 클릭하면 실행에 문제가 없습니다.**
 
 ## 주요 기능
 - **Pytest 기반 실행**: 구조화된 테스트 관리 및 리포트 생성
