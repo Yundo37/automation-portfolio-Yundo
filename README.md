@@ -11,14 +11,6 @@ Page Object Model 패턴 적용으로 유지보수성과 재사용성 확보
 ### Google Colab에서 실행
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/automation_portfolio.ipynb)
 
-### 로컬 환경에서 실행
-```bash
-git clone https://github.com/Yundo37/automation-portfolio-Yundo.git
-cd automation-portfolio-Yundo
-pip install -r requirements.txt
-pytest tests/ --html=reports/report.html --self-contained-html -v
-```
-
 ## 주요 기능
 - **E2E 테스트**: 전체 주문 프로세스 검증
 - **폼 테스트**: 파라미터화된 데이터 검증 + 의도적 실패 케이스
