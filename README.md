@@ -2,16 +2,13 @@
 
 **QA Engineer: 윤도현 (Dohyeon Yun)**
 
-## 프로젝트 개요
-Selenium + Pytest를 활용한 웹 UI 테스트 자동화 프레임워크  
-Page Object Model 패턴 적용으로 유지보수성과 재사용성 확보
-
 ## 빠른 실행 방법
 
 ### Google Colab에서 실행
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/automation_portfolio.ipynb)
 
 ## 주요 기능
+- **Pytest 기반 실행**: 구조화된 테스트 관리 및 리포트 생성
 - **E2E 테스트**: 전체 주문 프로세스 검증
 - **폼 테스트**: 파라미터화된 데이터 검증 + 의도적 실패 케이스
 - **자동 스크린샷**: 테스트 실패 시 자동 캡처
