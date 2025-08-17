@@ -7,7 +7,7 @@ class CheckOutPage:
 
     productTitle = (By.XPATH, "//div[@class='card h-100']")
     productFooter = (By.XPATH, "div/button")
-    checkOut = (By.CSS_SELECTOR, "a[class*='btn-primary']")
+    checkOut = (By.CSS_SELECTOR, "a[class*='btn-primary']")  # ✅ <a> 태그 기반으로 수정
 
     def getProductTitles(self):
         return self.driver.find_elements(*CheckOutPage.productTitle)
@@ -18,4 +18,3 @@ class CheckOutPage:
     def CheckOutItems(self):
         self.driver.find_element(*CheckOutPage.checkOut).click()
         return ConfirmPage(self.driver)
-
