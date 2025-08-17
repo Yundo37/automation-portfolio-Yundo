@@ -9,7 +9,7 @@ class CheckOutPage:
 
     productTitle = (By.XPATH, "//div[@class='card h-100']")
     productFooter = (By.XPATH, "div/button")
-    checkOut = (By.XPATH, "//a[contains(@class, 'btn-primary')]")
+    checkOut = (By.XPATH, "//button[@class='btn btn-success']")  # ✅ 복원된 클래스명
 
     def getProductTitles(self):
         return self.driver.find_elements(*CheckOutPage.productTitle)
