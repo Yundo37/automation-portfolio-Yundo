@@ -4,12 +4,17 @@
 
 ## 빠른 실행 방법
 
-### Google Colab에서 실행
+### Google Colab에서 실행 (실행 소요 시간 : 약 1분)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/automation_portfolio.ipynb)
 
-**⚠️ 처음 실행 시 "Google에서 작성하지 않음" 경고가 뜰 수 있습니다.**
+**⚠️ 처음 실행 시 "Google에서 작성하지 않음" 경고가 뜰 수 있습니다. '무시하고 계속하기'를 클릭하면 실행에 문제가 없습니다.**
 
-   **'무시하고 계속하기'를 클릭하면 실행에 문제가 없습니다.**
+실행 결과 및 실패 지점 스크린샷 확인 가능
+
+<img width="484" height="339" alt="image" src="https://github.com/user-attachments/assets/fea2b6c2-f50f-4326-9819-85d4b33b9874" />
+
+
+
 
 ## 주요 기능
 - **Pytest 기반 실행**: 구조화된 테스트 관리 및 리포트 생성
