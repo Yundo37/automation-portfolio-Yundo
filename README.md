@@ -11,7 +11,7 @@
 
 ↓ 실행 결과 및 자동 스크린샷 구현 화면
 
-<img width="484" height="339" alt="image" src="https://github.com/user-attachments/assets/fea2b6c2-f50f-4326-9819-85d4b33b9874" />
+<img width="339" height="237" alt="image" src="https://github.com/user-attachments/assets/fea2b6c2-f50f-4326-9819-85d4b33b9874" />
 
 
 
