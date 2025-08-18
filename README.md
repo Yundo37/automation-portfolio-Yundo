@@ -5,7 +5,7 @@
 ## 빠른 실행 방법
 
 ### Google Colab에서 실행 (실행 소요 시간 : 약 1분)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/automation_portfolio.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Yundo37/automation-portfolio-Yundo/blob/main/automation_portfolio.ipynb) 
 
 **⚠️ 처음 실행 시 "Google에서 작성하지 않음" 경고가 뜰 수 있습니다. '무시하고 계속하기'를 클릭하면 실행에 문제가 없습니다.**
 
