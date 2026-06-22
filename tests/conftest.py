@@ -62,7 +62,6 @@ def setup(request):
     options.add_argument("--no-first-run")
     options.add_argument("--no-default-browser-check")
     options.add_argument("--disable-infobars")
-    options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--disable-setuid-sandbox")
     options.add_argument("--no-zygote")
     options.add_argument("--single-process")
