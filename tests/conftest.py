@@ -5,6 +5,7 @@ import tempfile
 import pytest
 
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 
@@ -24,38 +25,42 @@ def setup(request):
     if browser_name != "chrome":
         raise RuntimeError("Only chrome supported in Colab")
 
-    chrome_binary = (
-        shutil.which("google-chrome")
-        or shutil.which("google-chrome-stable")
-        or shutil.which("chromium")
-        or shutil.which("chromium-browser")
-    )
+    cft_chrome = "/content/chrome-for-testing/chrome-linux64/chrome"
+    cft_driver = "/content/chromedriver-for-testing/chromedriver-linux64/chromedriver"
 
-    if chrome_binary is None:
-        raise RuntimeError("Chrome binary not found in Colab environment")
+    if os.path.exists(cft_chrome) and os.path.exists(cft_driver):
+        chrome_binary = cft_chrome
+        service_obj = ChromeService(cft_driver)
+    else:
+        chrome_binary = (
+            shutil.which("google-chrome")
+            or shutil.which("google-chrome-stable")
+            or shutil.which("chromium")
+            or shutil.which("chromium-browser")
+        )
+
+        if chrome_binary is None:
+            raise RuntimeError("Chrome binary not found in Colab environment")
+
+        service_obj = None
 
     options = ChromeOptions()
     options.binary_location = chrome_binary
 
     user_data_dir = tempfile.mkdtemp(prefix="chrome-user-data-")
 
-    options.add_argument("--headless=new")
+    options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
-    options.add_argument("--disable-software-rasterizer")
-    options.add_argument("--disable-extensions")
-    options.add_argument("--disable-background-networking")
-    options.add_argument("--disable-sync")
-    options.add_argument("--disable-default-apps")
-    options.add_argument("--disable-popup-blocking")
-    options.add_argument("--no-first-run")
-    options.add_argument("--no-default-browser-check")
-    options.add_argument("--disable-infobars")
     options.add_argument("--window-size=1920,1080")
+    options.add_argument("--remote-debugging-port=0")
     options.add_argument(f"--user-data-dir={user_data_dir}")
 
-    driver = webdriver.Chrome(options=options)
+    if service_obj is not None:
+        driver = webdriver.Chrome(service=service_obj, options=options)
+    else:
+        driver = webdriver.Chrome(options=options)
 
     driver.get("https://rahulshettyacademy.com/angularpractice/")
     driver.implicitly_wait(5)
