@@ -5,9 +5,7 @@ import tempfile
 import pytest
 
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 driver = None
@@ -36,8 +34,6 @@ def setup(request):
     if chrome_binary is None:
         raise RuntimeError("Chrome binary not found in Colab environment")
 
-    service_obj = ChromeService(ChromeDriverManager().install())
-
     options = ChromeOptions()
     options.binary_location = chrome_binary
 
@@ -53,10 +49,13 @@ def setup(request):
     options.add_argument("--disable-sync")
     options.add_argument("--disable-default-apps")
     options.add_argument("--disable-popup-blocking")
+    options.add_argument("--no-first-run")
+    options.add_argument("--no-default-browser-check")
+    options.add_argument("--disable-infobars")
     options.add_argument("--window-size=1920,1080")
     options.add_argument(f"--user-data-dir={user_data_dir}")
 
-    driver = webdriver.Chrome(service=service_obj, options=options)
+    driver = webdriver.Chrome(options=options)
 
     driver.get("https://rahulshettyacademy.com/angularpractice/")
     driver.implicitly_wait(5)
