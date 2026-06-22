@@ -1,3 +1,4 @@
+#음
 import os
 import base64
 import shutil
@@ -27,10 +28,14 @@ def setup(request):
 
     cft_chrome = "/content/chrome-for-testing/chrome-linux64/chrome"
     cft_driver = "/content/chromedriver-for-testing/chromedriver-linux64/chromedriver"
+    cft_crashpad = "/content/chrome-for-testing/chrome-linux64/chrome_crashpad_handler"
 
     if os.path.exists(cft_chrome) and os.path.exists(cft_driver):
         chrome_binary = cft_chrome
         service_obj = ChromeService(cft_driver)
+
+        if os.path.exists(cft_crashpad):
+            os.chmod(cft_crashpad, 0o755)
     else:
         chrome_binary = (
             shutil.which("google-chrome")
@@ -65,6 +70,8 @@ def setup(request):
     options.add_argument("--disable-setuid-sandbox")
     options.add_argument("--no-zygote")
     options.add_argument("--single-process")
+    options.add_argument("--disable-crash-reporter")
+    options.add_argument("--disable-breakpad")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--remote-debugging-pipe")
     options.add_argument(f"--user-data-dir={user_data_dir}")
