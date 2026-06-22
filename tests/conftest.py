@@ -49,12 +49,25 @@ def setup(request):
 
     user_data_dir = tempfile.mkdtemp(prefix="chrome-user-data-")
 
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
+    options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-background-networking")
+    options.add_argument("--disable-sync")
+    options.add_argument("--disable-default-apps")
+    options.add_argument("--disable-popup-blocking")
+    options.add_argument("--no-first-run")
+    options.add_argument("--no-default-browser-check")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-features=VizDisplayCompositor")
+    options.add_argument("--disable-setuid-sandbox")
+    options.add_argument("--no-zygote")
+    options.add_argument("--single-process")
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("--remote-debugging-port=0")
+    options.add_argument("--remote-debugging-pipe")
     options.add_argument(f"--user-data-dir={user_data_dir}")
 
     if service_obj is not None:
