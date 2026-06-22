@@ -1,4 +1,3 @@
-#음
 import os
 import base64
 import shutil
